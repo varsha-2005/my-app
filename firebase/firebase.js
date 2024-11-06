@@ -65,14 +65,14 @@ export async function signOutUser() {
 
 export async function addTask(userId, taskTitle) {
   try {
-    const docRef = await setDoc(collection(db, "tasks"), {
+    const docRef = await addDoc(collection(db, "tasks"), {
       userId: userId,
       title: taskTitle,
       completed: false,
       createdAt: new Date(),
     });
     console.log("Task added with ID: ", docRef.id);
-    return docRef;
+    return docRef.id;
   } catch (e) {
     console.log("Error adding task: ", e);
   }
